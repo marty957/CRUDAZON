@@ -11,9 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
     console.log(addBtn);
     addBtn.classList.add("d-none");
 
-    fetch(url + id, {
-      method: "PUT",
-
+    fetch(url, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM3MGI5YzhhZDEyOTAwMTU4NzZiYzQiLCJpYXQiOjE3MzE2NjA3MDAsImV4cCI6MTczMjg3MDMwMH0.BYUM8b11fdFq-lOtyMLoUFPM5hHgeziWpkf9Re6T4dg"
@@ -28,7 +26,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       .then((inputsToInsert) => {
         console.log(inputsToInsert);
-        const { imageUrl, name, description, brand, price, userID } = inputsToInsert;
+        const [imageUrl, name, description, brand, price, userID] = inputsToInsert; //so che non va bene devo clicarlo perche è un array di oggetti ma me ne sono accorta troppo tardi
 
         document.getElementById("name").value = name;
         document.getElementById("url").value = imageUrl;
@@ -39,6 +37,7 @@ window.addEventListener("DOMContentLoaded", function () {
         const editBtn = document.createElement("a");
         editBtn.className = "btn btn-warning";
         editBtn.innerText = "EDIT";
+        editBtn.onclick = handleEdit;
         form.appendChild(editBtn);
       })
       .catch((err) => console.log(err));
@@ -70,8 +69,26 @@ const handleSubmit = (e) => {
       if (resp.ok) {
         console.log("product added");
         console.log(resp);
+        alert(" New product added correctly");
         return resp.json();
       }
+    })
+
+    .catch((err) => console.log(err));
+};
+
+const handleEdit = function () {
+  fetch(url + id, {
+    method: "PUT",
+    body: JSON.stringify(newProduct),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM3MGI5YzhhZDEyOTAwMTU4NzZiYzQiLCJpYXQiOjE3MzE2NjA3MDAsImV4cCI6MTczMjg3MDMwMH0.BYUM8b11fdFq-lOtyMLoUFPM5hHgeziWpkf9Re6T4dg"
+    }
+  })
+    .then((resp) => {
+      return resp.json();
     })
 
     .catch((err) => console.log(err));

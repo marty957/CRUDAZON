@@ -24,14 +24,22 @@ window.addEventListener("DOMContentLoaded", function () {
 
       .then((inputsToInsert) => {
         console.log(inputsToInsert);
-
         const { imageUrl, name, description, brand, price } = inputsToInsert;
+
+        const addBtn = document.querySelector(".btn-success");
+        console.log(addBtn);
+        addBtn.classList.add("d-none");
 
         document.getElementById("name").value = name;
         document.getElementById("url").value = imageUrl;
         document.getElementById("description").value = description;
         document.getElementById("brand").value = brand;
         document.getElementById("price").value = price;
+
+        const editBtn = document.createElement("a");
+        editBtn.className = "btn btn-warning";
+        editBtn.innerText = "EDIT";
+        form.appendChild(editBtn);
       })
       .catch((err) => console.log(err));
   }

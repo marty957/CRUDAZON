@@ -7,6 +7,10 @@ window.addEventListener("DOMContentLoaded", function () {
   form.onsubmit = handleSubmit;
   const id = params.get("prodId");
   if (id) {
+    const addBtn = document.querySelector(".btn-success");
+    console.log(addBtn);
+    addBtn.classList.add("d-none");
+
     fetch(url + id, {
       method: "PUT",
 
@@ -24,11 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       .then((inputsToInsert) => {
         console.log(inputsToInsert);
-        const { imageUrl, name, description, brand, price } = inputsToInsert;
-
-        const addBtn = document.querySelector(".btn-success");
-        console.log(addBtn);
-        addBtn.classList.add("d-none");
+        const { imageUrl, name, description, brand, price, userID } = inputsToInsert;
 
         document.getElementById("name").value = name;
         document.getElementById("url").value = imageUrl;

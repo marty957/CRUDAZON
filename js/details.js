@@ -21,9 +21,9 @@ window.addEventListener("DOMContentLoaded", function () {
     .then((product) => {
       console.log(product);
 
-      const { brand, description, name, price, imageUrl, userId } = product;
+      const { brand, description, name, price, imageUrl } = product;
 
-      console.log(brand);
+      console.log(product._id);
 
       const container = document.querySelector(".container");
       const card = document.createElement("div");
@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const p = document.createElement("p");
       p.className = "card-text";
-      p.innerText = description;
+      p.innerText = brand + " " + description;
 
       const priceShowed = document.createElement("p");
       priceShowed.className = "display-6";
@@ -50,7 +50,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const btnDetails = document.createElement("a");
       btnDetails.className = "btn btn-primary";
-      btnDetails.innerText = "edit";
+      btnDetails.innerText = "Edit";
+      btnDetails.href = `./backoffice.html?prodId=${product._id}`;
       const btnCancel = document.createElement("a");
       btnCancel.className = "btn btn-danger";
       btnCancel.innerText = "REMOVE";

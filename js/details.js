@@ -42,14 +42,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const p = document.createElement("p");
       p.className = "card-text";
-      p.innerText = brand + " " + description;
+      p.innerText = ` Brand Product: ${brand} INFO:${description}`;
 
       const priceShowed = document.createElement("p");
       priceShowed.className = "display-6";
       priceShowed.innerText = price;
 
       const btnDetails = document.createElement("a");
-      btnDetails.className = "btn btn-primary";
+      btnDetails.className = "btn btn-primary me-2";
       btnDetails.innerText = "Edit";
       btnDetails.href = `./backoffice.html?prodId=${product._id}`;
       const btnCancel = document.createElement("a");
